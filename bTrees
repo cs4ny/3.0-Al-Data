@@ -1,0 +1,159 @@
+# Learning Trees interactivepython
+
+
+# Write a defined tree
+myTree =  ['a',   #root
+      ['b',  #left subtree
+       ['d', [], []],
+       ['e', [], []] ],
+      ['c',  #right subtree
+       ['f', [], []],
+       [] ]
+     ]
+
+#print(myTree)
+#print("Root = ", myTree[0])
+#print("Left subTree = ", myTree[1])
+#print("Right subTree = ", myTree[2])
+
+
+# Write a binary tree using functions
+def BinaryTree(root):
+    return [root,[],[]]
+
+def insertLeft(root,newBranch):
+    t = root.pop(1)
+    if len(t)>1:
+        root.insert(1,[newBranch,t,[]])
+    else:
+        root.insert(1,[newBranch,[],[]])
+    return root
+
+
+def insertRight(root,newBranch):
+    t = root.pop(2)
+    if len(t) > 1:
+        root.insert(2,[newBranch,[],t])
+    else:
+        root.insert(2,[newBranch,[],[]])
+    return root
+
+def gRootVal(root):
+    return root[0]
+
+def sRootVal(root,newVal):
+    root[0] = newVal
+
+def gLeftChild(root):
+    return root[1]
+
+def gRightChild(root):
+    return root[2]
+
+#aTree = BinaryTree(1)
+#insertLeft(aTree,2)
+#insertRight(aTree,3)
+#insertLeft(aTree[1],4)
+#insertRight(aTree[1],5)
+#insertLeft(aTree[2],6)
+#insertRight(aTree[2],7)
+
+#print(aTree)
+
+
+# Write a binary tree using class
+class BinaryTree2:
+    """ A Class of Binary Tree """
+    
+    def __init__(self,rootObj):
+        self.key = rootObj
+        self.lChild = None
+        self.rChild = None
+
+
+    def insertL(self,newNode):
+        if self.lChild == None:
+            self.lChild = BinaryTree2(newNode)
+        else:
+            t = BinaryTree2(newNode)
+            t.lChild = self.lChild
+            self.lChild = t
+
+    def insertR(self,newNode):
+        if self.rChild == None:
+            self.rChild = BinaryTree2(newNode)
+        else:
+            t = BinaryTree2(newNode)
+            t.rChild = self.rChild
+            self.rChild = t
+
+    def pOrder(self):
+        print(self.key)
+        if self.lChild:
+            self.lChild.preorder()
+        if self.rChild:
+            self.rChild.preorder()
+
+    def getR(self):
+        return self.rChild
+
+    def getL(self):
+        return self.lChild
+
+    def setRootVal(self,obj):
+        self.key = obj
+
+    def getRoot(self):
+        return self.key
+
+def prOrder(tree):
+    """ root, left, right """
+    if tree:
+        print(tree.getRoot())
+        prOrder(tree.getL())
+        prOrder(tree.getR())
+
+def poOrder(tree):
+    """ left, right, root """
+    if tree!= None:
+        poOrder(tree.getL())
+        poOrder(tree.getR())
+        print(tree.getRoot())
+
+def inOrder(tree):
+    """ left, root, right """
+    if tree!= None:
+        inOrder(tree.getL())
+        print(tree.getRoot())
+        inOrder(tree.getR())
+
+nTree = BinaryTree2('a')
+nTree.insertL('b')
+nTree.insertR('c')
+nTree.getL().insertL('d')
+nTree.getL().insertR('e')
+nTree.getR().insertL('f')
+nTree.getR().insertR('g')
+nTree.getR().getL().insertL('h')
+"""    a
+  b         c
+d  e      f    g
+        h
+"""
+
+prOrder(nTree)
+print("")
+poOrder(nTree)
+print("")
+inOrder(nTree)
+
+
+
+
+
+
+
+
+
+
+    

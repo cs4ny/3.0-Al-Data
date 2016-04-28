@@ -1,0 +1,41 @@
+# Timing Sort Algorithms
+
+import random
+import searchAndSort as ss
+
+aList = []
+for i in range(1000):
+    aList.append(random.randrange(1000))
+
+print("")
+print("Insertion Sort Random: ", ss.insertionSort(aList))
+print("Selection Sort Random: ", ss.selectionSort(aList))
+print("Bubble Sort Random: ", ss.bubbleSort(aList))
+
+
+
+#-----------------------------------------------------------
+
+aList2 = []
+for i in range(1000,0,-1):
+    aList2.append(i)
+
+print("")
+print("Insertion Sort Reverse: ", ss.insertionSort(aList2))
+print("Selection Sort Reverse: ", ss.selectionSort(aList2))
+print("Bubble Sort Reverse: ", ss.bubbleSort(aList2))
+
+#------------------------------------------------------------
+
+aList3 = []
+for i in range(500):
+    aList3.append(i)
+for i in range(500):
+    aList3.append(random.randrange(1000))
+
+print("")
+print("Insertion Sort Neary Sorted: ", ss.insertionSort(aList3))
+print("Selection Sort Neary Sorted: ", ss.selectionSort(aList3))
+print("Bubble Sort Neary Sorted: ", ss.bubbleSort(aList3))
+
+

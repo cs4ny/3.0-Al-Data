@@ -1,0 +1,106 @@
+#IA
+#Search Spell Check
+import time
+import re
+
+def main():
+    while True:
+
+        #Getting User File
+        uList = rFile()
+
+        #Linear or Binary
+        print("Binary Search: ",sDic(bSearch,uList))
+        print("Linear Search: ",sDic(lSearch,uList))
+
+def rFile():
+
+    #User File Input
+    uFile = input("Please enter a file name to be read: ")
+    uFInput = open(uFile)
+    uList= []
+    for lines in uFInput:
+        lines = lines.strip()
+        lines = lines.lower()
+        words = re.findall(r"\w+",lines)
+        uList.append(words)
+    uFInput.close()
+    return uList
+
+def sDic(typeS,uList):
+    #Dictionary
+    dic = open("dictionary.txt")
+    dicL = []
+    for lines in dic:
+        lines = lines.strip()
+        dicL.append(lines)
+    dic.close()
+
+    #Search
+    sTime = time.time()
+    numMis = 0
+    mSpeList = []
+    for lines in uList:
+        for words in lines:
+            if not typeS(words,dicL):
+                numMis += 1
+                mSpeList.append(words)
+                #print(words," not found, line", uList.index(lines))
+
+    mSpeList = set(mSpeList)
+    #print(mSpeList)
+    return("Number of mispelled words: " + str(numMis) + "    Time: " + str(time.time() - sTime))
+
+
+def lSearch(word,dList):
+    #Set
+    index = 0
+
+    #Loop
+    while index < len(dList) and dList[index] != word:
+        index += 1
+
+    #Conditional
+    if index < len(dList):
+        #print(word, " found at ",index)
+        return True
+    else:
+        #print("Cannot find")
+        return False
+
+
+def bSearch(word,dList):
+    #Set
+    lBound = 0
+    uBound = len(dList) - 1
+    found = False
+
+    #Loop
+    while lBound <= uBound and not found:
+        mPoint = (uBound + lBound) // 2
+
+        if dList[mPoint] < word:
+            lBound = mPoint + 1
+        elif dList[mPoint] > word:
+            uBound = mPoint - 1
+        else:
+            found = True
+
+    #Conditional
+    if found:
+       #print(word, " found at ",mPoint)
+        return True
+    else:
+        #print("Cannot find")
+        return False
+        
+    
+main()
+
+
+
+
+
+
+                  
+        

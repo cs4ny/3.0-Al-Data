@@ -1,0 +1,75 @@
+
+# Graph interactivepython
+
+class Vertex:
+
+    def __init__(self,key):
+        self.id = key
+        self.cTo = {}
+
+    def aNeighbor(self,nbr,we=0):
+        self.cTo[nbr] = we
+
+    def __str__(self):
+        return str(self.id) + ' connectedTo ' + str([x.id for x in self.cTo])
+
+    def gCon(self):
+        return self.cTo.keys()
+
+    def gId(self):
+        return self.id
+
+    def gWe(self,nbr):
+        return self.cTo[nbr]
+
+    
+class Graph:
+
+    def __init(self):
+        self.vList = {}
+        self.nVer = 0
+
+    def aVertex(self,key):
+        self.nVer += 1
+        nVer = Vertex(key)
+        self.vList[key] = nVer
+        return nVer
+
+    def gVertex(self,key):
+        if n in self.vList:
+            return self.vList[key]
+
+    def __contains__(self,n):
+        return n in self.vList
+
+    def aEdge(self,f,t,we=0):
+        if f not in self.vList:
+            nV = self.aVertex(f)
+        if t not in self.vList:
+            nV = self.aVertex(t)
+        self.vList[f].aNeighbor(self.vList[t],we)
+
+    def gVertices(self):
+        return self.vList.keys()
+
+    def __iter__(self):
+        return (iter(self.vList.values()))
+
+
+nGr = Graph()
+for i in range(4):
+    nGr.aVertex(i)
+
+nGr.addEdge(0,1,5)
+nGr.addEdge(0,5,2)
+nGr.addEdge(1,2,4)
+nGr.addEdge(2,3,9)
+nGr.addEdge(3,4,7)
+
+                
+
+
+
+
+
+        

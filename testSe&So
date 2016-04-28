@@ -1,0 +1,79 @@
+# TEST SEARCH AND SORT MODULE
+# Program used to test student searchAndSort.py modules.
+# Mr. V
+
+import searchAndSort as ss
+import random as r
+
+def main():
+    """ Main Function."""
+    
+    # Create a random list of 15 integers b/t 1 and 10
+    myList = randomList(15, 1, 11)
+    
+    # Test Bubble Sort
+    print("\nTEST BUBBLE SORT")
+    sortedList = ss.bubbleSort(myList)
+    print("My List:", myList)
+    print("Bubble Sorted List:", sortedList)
+    
+    # Test Selection Sort
+    print("\nTEST SELECTION SORT")
+    sortedList = ss.selectionSort(myList)
+    print("My List:", myList)
+    print("Selection Sorted List:", sortedList)    
+    
+    # Test Insertion Sort
+    print("\nTEST INSERTION SORT")
+    sortedList = ss.insertionSort(myList)
+    print("My List:", myList)
+    print("Insertion Sorted List:", sortedList)        
+    
+    # Test Linear Search - Found
+    print("\nTEST LINEAR SEARCH - FOUND")
+    index = ss.linearSearch(myList[10], myList)
+    if index == -1:
+        print("Not found.")
+    else:
+        print("Found", myList[10], "at index:", index)
+        
+    # Test Linear Search - Not Found
+    print("\nTEST LINEAR SEARCH - NOT FOUND")
+    index = ss.linearSearch(20, myList)
+    if index == -1:
+        print("Not found.")
+    else:
+        print("Found 20 at index:", index)
+    
+    # Test Binary Search - Found
+    print("\nTEST BINARY SEARCH - FOUND")
+    index = ss.binarySearch(sortedList[2], sortedList)
+    if index == -1:
+        print("Not found.")
+    else:
+        print("Found", sortedList[2], "at index:", index)
+        
+    # Test Binary Search - Not Found
+    print("\nTEST BINARY SEARCH - NOT FOUND")
+    index = ss.binarySearch(20, sortedList)
+    if index == -1:
+        print("Not found.")
+    else:
+        print("Found 20 at index:", index)
+
+        
+# end main()
+
+def randomList(num, low, high):
+    """ Create a list of 'num' random integers b/t 'low' (inclusive)
+    and 'high' (exclusive). """
+    
+    tList = []
+    for i in range(num):
+        tList.append(r.randrange(low, high))
+    
+    return tList
+# end randomList
+
+# Call main to begin program
+main()

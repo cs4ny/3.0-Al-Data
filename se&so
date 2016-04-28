@@ -1,0 +1,113 @@
+#searchAndSort Module
+import time
+
+def linearSearch(key,aList):
+    """ Search for a key by goind through the list """
+
+    start = time.time()
+    
+    # Loop while key is not found and index does not go over len(aList) - 1
+    index = 0
+    while aList[index] != key and index < len(aList) - 1:
+        index += 1
+
+    # Check if found or not
+    if index < len(aList) - 1:
+        print(time.time() - start)
+        return index
+    else:
+        print(time.time() - start)
+        return -1
+
+    
+
+
+def binarySearch(key,aList):
+    """ Search by spliting list in half """
+
+    start = time.time()
+    
+    # Set
+    lBound = 0
+    uBound = len(aList) - 1
+    found = False
+
+    # Check to see if the list can still be split and found is not true
+    while lBound <= uBound and not found:
+        mBound = (lBound + uBound) // 2
+        if aList[mBound] > key:
+            uBound = mBound - 1
+        elif aList[mBound] < key: 
+            lBound = mBound + 1
+        else:
+            found = True
+
+    # Check if found or not
+    if found:
+        print(time.time() - start)
+        return mBound
+    else:
+        print(time.time() - start)
+        return -1
+
+def bubbleSort(aList):
+    """ Sort by comparing two number at a time and put max at list end """
+
+    start = time.time()
+    
+    # Loop for numer of passes
+    for pNum in range(len(aList) - 1, 0, -1):
+        # Loop within the pass
+        for i in range(pNum):
+            if aList[i] > aList[i+1]:
+                # Swap
+                temp = aList[i]
+                aList[i] = aList[i+1]
+                aList[i+1] = temp
+
+    return(time.time() - start)
+    #return aList
+
+def selectionSort(aList):
+    """ Sort by finding max number and put it at fillSlot end """
+
+    start = time.time()
+    
+    # Loop for the fillSlot backwards
+    for fSlot in range(len(aList) - 1, 0, -1):
+        pMax = 0
+        # Loop and compare to find the maximum number
+        for loc in range(1,fSlot+1):
+            if aList[loc] > aList[pMax]:
+                pMax = loc
+
+        # Swap
+        temp = aList[fSlot]
+        aList[fSlot] = aList[pMax]
+        aList[pMax] = temp
+
+    return(time.time() - start)
+    #return aList
+
+
+def insertionSort(aList):
+    """ Sort by comparing a sorted list to the next number """
+
+    start = time.time()
+    
+    # Loop for each value
+    for i in range(1,len(aList)):
+        curVal = aList[i]
+        pos = i
+
+        # Loop until all values are slided and if list is out of order
+        while pos > 0 and aList[pos-1] > curVal:
+            aList[pos] = aList[pos-1]
+            pos = pos - 1
+
+        # Switch first number back
+        aList[pos] = curVal
+
+    return(time.time() - start)
+    #return aList
+

@@ -1,0 +1,92 @@
+# Learning Algorithms and Data Structures 1 uwaterloo
+# Abstraction -- ADT(abstract data type) encapsulates info
+
+#Fraction Class Examples
+class Fraction():
+
+    def __init__(self,top,bottom):
+        self.num = top
+        self.den = bottom
+
+    def show(self,num,den):
+        print(num,"/",den)
+
+    def __str__(self):
+        return str(self.num)+"/"+str(self.den)
+
+    def add(self,oFrac):
+        if self.den != oFrac.den:
+            tDen =
+            
+        tNum = self.num + oFrac.num
+        self.show(tNum,self.den)
+
+
+
+aFra = Fraction(2,3)
+bFra = Fraction(1,3)
+aFra.add(bFra)
+
+# Recursion
+def has_digit(aStr):
+    aDig = ["0","1","2","3","4","5","6","7","8","9"]
+
+    if len(aStr) > 0:
+        if aStr[0] in aDig:
+            return True
+        else:
+            return has_digit(aStr[1:])
+    else:
+        return False
+
+# StackOverFlow
+def is_sorted(s):
+    if len(s) in [0,1]:
+        return True
+    if s[0] <= s[1]:
+        return is_sorted(s[1:])
+    return False
+
+
+def all_equal(numList):
+    if len(numList) == 0 or len(numList) == 1:
+        return True
+    if numList[0] == numList[1]:
+        return all_equal(numList[1:])
+    else:
+        return False
+
+
+
+def is_multiple(number, factor):
+    return number % factor == 0
+
+def divides_all(seq,factor):
+    if len(seq) == 0:
+        return True
+    if is_multiple(seq[0],factor):
+        return divides_all(seq[1:],factor)
+    else:
+        return False
+
+
+def contains(seq,item):
+    if len(seq) == 0:
+        return False
+    if seq[0] == item:
+        return True
+    else:
+        return contains(seq[1:],item)
+
+# StackOverFlow
+def reverse(seq):
+    if len(seq) == 0: return []
+    return [seq[-1]] + reverse(seq[:-1])
+
+# Yay Brain
+def multisplit(total,split):
+    if total <= 1:
+        return 0
+    else:
+        return 1 + multisplit(total/split,split)
+
